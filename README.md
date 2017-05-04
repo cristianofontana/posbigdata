@@ -1,10 +1,13 @@
 #O exemplo a seguir foi executado em uma VM Cloudera, carregando arquivos .txt de livros extraidos de paginas html no Hadoop Distributed File System (HDFS). Usando linguagem python no Apache Spark.
 	
 ##Comandos para carregar arquivos no hdfs 
+
 #hdfs dfs -copyFromLocal /home/cloudera/input 
+
 #hdfs dfs -ls /user/cloudera/input	
 	
 #executanto o shel interativo do pyspark 
+
 #pyspark
 
 # 1 - Contar todas as cocorrências  de palavras (removendo as preposições e coisas assim)
