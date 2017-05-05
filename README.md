@@ -13,13 +13,17 @@
 # 1 - Contar todas as cocorrências  de palavras (removendo as preposições e coisas assim)
 
 text_file = sc.textFile("hdfs://home/cloudera/input/index.txt")
+
 texto = re.sub(r"<.+?>", "", text_file)
 
 counts = texto.flatMap(lambda line: line.split(" ")).map(lambda word: (word, 1)).reduceByKey(lambda a, b: a + b)
+
 counts.saveAsTextFile("hdfs://home/cloudera/input/result.txt")
 
 # 2 - Contar palavras por livro 
 
 text_file = sc.textFile("hdfs://home/cloudera/input/index.txt")
+
 counts = texto.flatMap(lambda line: line.split(" ")).map(lambda word: (word, 1)).reduceByKey(lambda a, b: a + b)
+
 counts.saveAsTextFile("hdfs://home/cloudera/input/result.txt")
