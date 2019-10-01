@@ -1,29 +1,15 @@
-#O exemplo a seguir foi executado em uma VM Cloudera, carregando arquivos .txt de livros extraidos de paginas html no Hadoop Distributed File System (HDFS). Usando linguagem python no Apache Spark.
-	
-##Comandos para carregar arquivos no hdfs 
+# Funcionalidade!
 
-#hdfs dfs -copyFromLocal /home/cloudera/input 
+  - Captar dados do binlog dos bancos de dados de produção e despejar em uma message queue
 
-#hdfs dfs -ls /user/cloudera/input	
-	
-#executanto o shel interativo do pyspark 
+### Instalações
 
-#pyspark
+```sh
+$ pip install boto3
+$ pip install mysql-replication
+```
+### Documentação e fonte
 
-# 1 - Contar todas as cocorrências  de palavras (removendo as preposições e coisas assim)
+https://python-mysql-replication.readthedocs.org/en/latest/
 
-text_file = sc.textFile("hdfs://home/cloudera/input/index.txt")
-
-texto = re.sub(r"<.+?>", "", text_file)
-
-counts = texto.flatMap(lambda line: line.split(" ")).map(lambda word: (word, 1)).reduceByKey(lambda a, b: a + b)
-
-counts.saveAsTextFile("hdfs://home/cloudera/input/result.txt")
-
-# 2 - Contar palavras por livro 
-
-text_file = sc.textFile("hdfs://home/cloudera/input/index.txt")
-
-counts = texto.flatMap(lambda line: line.split(" ")).map(lambda word: (word, 1)).reduceByKey(lambda a, b: a + b)
-
-counts.saveAsTextFile("hdfs://home/cloudera/input/result.txt")
+https://github.com/noplay/python-mysql-replication
